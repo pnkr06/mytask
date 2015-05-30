@@ -26,12 +26,16 @@ public class TodoResource {
     }
 
     private void setupEndpoints() {
+ 	
         post(API_CONTEXT + "/todos", "application/json", (request, response) -> {
             todoService.createNewTodo(request.body());
             response.status(201);
+            System.out.println("post create");
             return response;
         }, new JsonTransformer());
 
+       
+        
         get(API_CONTEXT + "/todos/:id", "application/json", (request, response)
 
                 -> todoService.find(request.params(":id")), new JsonTransformer());
@@ -43,6 +47,8 @@ public class TodoResource {
         put(API_CONTEXT + "/todos/:id", "application/json", (request, response)
 
                 -> todoService.update(request.params(":id"), request.body()), new JsonTransformer());
+    
+      
     }
 
 

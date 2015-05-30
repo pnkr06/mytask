@@ -1,6 +1,6 @@
-<h2>All Todos <a class="btn btn-primary pull-right" href="#/create"><i
-        class="icon-plus-sign icon-white"></i> New Todo</a></h2>
-
+<h2>All Todos <a class="btn btn-primary pull-right" href="#/create"> <i 
+class="icon-plus-sign icon-white"></i>New Todo</a></h2>
+ 
 <table class="table table-hover">
     <tr>
         <th>
@@ -14,10 +14,13 @@
         </th>
         <th>Done</th>
     </tr>
+     
     <tr class="success-{{todo.done}}" ng-repeat="todo in todos">
         <td>{{$index+1}}</td>
         <td>
-            {{todo.title}}
+            
+            <a href="#/edit" editable-text="todo.title" ng-model="todo.title" onaftersave="editTodo(todo)">{{ todo.title || 'empty'}}</a> 
+        
         </td>
         <td>
             {{todo.createdOn |date:'medium'}}
@@ -25,5 +28,8 @@
         <td>
             <input type="checkbox" ng-change="todoStatusChanged(todo)" ng-value="todo.done" ng-model="todo.done">
         </td>
+       
     </tr>
+   
 </table>
+ 

@@ -1,0 +1,12 @@
+<form ng-submit="editTodo(todo)"> 
+<p>hi {{todo}}</p>
+ Update Title:
+<input type ="text" ng-model="todo.title" name="todo.title"> 
+Update id:
+ <input type ="text" ng-model="todo.id" ng-value='{{todo.id}}'> <br>
+ <input type ="text" ng-model="todo.done" > <br>
+ <input type ="text" ng-model="todo.createdOn" > <br>
+<button type="submit" class="btn btn-info">Update Todo</button>
+ 
+
+</form>
