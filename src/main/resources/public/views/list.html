@@ -28,7 +28,9 @@ class="icon-plus-sign icon-white"></i>New Todo</a></h2>
         <td>
             <input type="checkbox" ng-change="todoStatusChanged(todo)" ng-value="todo.done" ng-model="todo.done">
         </td>
-       
+        <td>
+            <input type="button" class="btn btn-primary pull-right" ng-click="deleteTodo(todo)" ng-model="todo.id"  value="Delete">
+        </td> 
     </tr>
    
 </table>

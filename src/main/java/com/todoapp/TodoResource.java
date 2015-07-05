@@ -48,7 +48,10 @@ public class TodoResource {
 
                 -> todoService.update(request.params(":id"), request.body()), new JsonTransformer());
     
-      
+        put(API_CONTEXT + "/todo/:id", "application/json", (request, response)
+
+                -> todoService.deleteTodos(request.params(":id")), new JsonTransformer());
+        
     }
 
 

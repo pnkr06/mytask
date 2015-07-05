@@ -2,6 +2,7 @@ package com.todoapp;
 
 import com.google.gson.Gson;
 import com.mongodb.*;
+
 import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class TodoService {
             DBObject dbObject = dbObjects.next();
             todos.add(new Todo((BasicDBObject) dbObject));
         }
-       // System.out.println(todos);
+        
         return todos;
     }
 
@@ -46,11 +47,16 @@ public class TodoService {
     public Todo find(String id) {
         return new Todo((BasicDBObject) collection.findOne(new BasicDBObject("_id", new ObjectId(id))));
     }
-
+   
     public Todo update(String todoId, String body) {
         Todo todo = new Gson().fromJson(body, Todo.class);
        collection.update(new BasicDBObject("_id", new ObjectId(todoId)), new BasicDBObject("$set", new BasicDBObject("title", todo.getTitle())));
        collection.update(new BasicDBObject("_id", new ObjectId(todoId)), new BasicDBObject("$set", new BasicDBObject("done", todo.isDone())));
        return this.find(todoId);
+    }
+    
+    public Todo deleteTodos(String id) {
+    	collection.remove(new BasicDBObject("_id", new ObjectId(id)));
+		return null;		
     }
 }

@@ -16,15 +16,12 @@ app.config(function ($routeProvider) {
     }).when('/create', {
         templateUrl: 'views/create.html',
         controller: 'CreateCtrl'
-    }).when('/edit', {
-        templateUrl: 'views/edit.html',
-        controller: 'Edit'
     }).otherwise({
         redirectTo: '/'
     })
 });
 
-app.controller('ListCtrl', function ($scope, $http) {
+app.controller('ListCtrl', function ($scope, $http, $location) {
     $http.get('/api/v1/todos')
     .success(function (data) {
         $scope.todos = data;
@@ -36,28 +33,25 @@ app.controller('ListCtrl', function ($scope, $http) {
     $scope.todoStatusChanged = function (todo) {
         console.log(todo);
          
-        $http.put('/api/v1/todos/' + todo.id, todo).success(function (data) {
-        	
-            console.log('status changed');
+        $http.put('/api/v1/todos/' + todo.id, todo)
+        .success(function (data) {
+           console.log('status changed');
         }).error(function (data, status) {
             console.log('Error ' + data)
         })
     }
     
-  /*  
-    $scope.fetch = function(todo) {
-    	console.log('fetch');
-          $http.get('/api/v1/todos/' + todo.id).success(function (data) {
-        	  $scope.todo = data;
-        	  $scope.todo.title = data.title;
-        	  console.log(data.id);
-              console.log($scope.todo.title);
-          }).error(function (data, status) {
-              console.log('Error ' + data)
-          })	
-    }     
-             
-*/
+    $scope.deleteTodo = function(todo) {
+    	console.log(todo);
+    	
+    	$http.put('/api/v1/todo/'+ todo.id, todo)
+    	.success(function (data) {
+    		console.log('todo deleted');
+    		$location.path('/#');
+    	}).error(function (data, status) {
+    		console.log('Error' + data)
+    	})
+    }
     
     $scope.editTodo = function (todo) {
         
