@@ -1,5 +1,7 @@
-<<<<<<< HEAD
-[![Build Status](https://travis-ci.org/shekhargulati/todoapp-spark.svg?branch=master)](https://travis-ci.org/shekhargulati/todoapp-spark)
+This is sample Todo app with AngularJs,Mongodb with Java from below github user (Shekar Gulati).
+(https://travis-ci.org/shekhargulati/todoapp-spark.svg?branch=master)](https://travis-ci.org/shekhargulati/todoapp-spark)
 =======
 # mytask 
->>>>>>> 3c5944dd9f0a30863eba40cb17eecf53089764e5
+ Modified my version of code to 
+ Include Delete button for each Todo and 
+ Edit title of the Todo task.
